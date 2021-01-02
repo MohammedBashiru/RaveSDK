@@ -71,13 +71,13 @@ public enum SubAccountChargeType: Int, RawRepresentable  {
 public class SubAccount: NSObject {
     public let id:String
     public let ratio:NSNumber?
-    public let charge_type:SubAccountChargeType?
+    public var charge_type:SubAccountChargeType = .percentage
     public let charge:NSNumber?
     
     public init(id:String , ratio:Double?, charge_type:SubAccountChargeType? ,charge:Double?) {
         self.id = id
         self.ratio = NSNumber(nonretainedObject: ratio)
-        self.charge_type = charge_type
+        self.charge_type = charge_type!
         self.charge = NSNumber(nonretainedObject: charge)
     }
 }
