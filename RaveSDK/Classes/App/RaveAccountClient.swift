@@ -187,18 +187,17 @@ public class RaveAccountClient {
                     if let ratio = subAccount.ratio{
                         dict.merge(["transaction_split_ratio":"\(ratio)"])
                     }
-                    if let chargeType = subAccount.charge_type{
-                        switch chargeType{
-                        case .flat :
-                            dict.merge(["transaction_charge_type":"flat"])
-                            if let charge = subAccount.charge{
-                                dict.merge(["transaction_charge":"\(charge)"])
-                            }
-                        case .percentage:
-                            dict.merge(["transaction_charge_type":"percentage"])
-                            if let charge = subAccount.charge{
-                                dict.merge(["transaction_charge":"\((charge as! Decimal / 100))"])
-                            }
+                    let chargeType = subAccount.charge_type
+                    switch chargeType{
+                    case .flat :
+                        dict.merge(["transaction_charge_type":"flat"])
+                        if let charge = subAccount.charge{
+                            dict.merge(["transaction_charge":"\(charge)"])
+                        }
+                    case .percentage:
+                        dict.merge(["transaction_charge_type":"percentage"])
+                        if let charge = subAccount.charge{
+                            dict.merge(["transaction_charge":"\((charge as! Decimal / 100))"])
                         }
                     }
                     
