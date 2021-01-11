@@ -1777,6 +1777,11 @@ public class NewRavePayViewController: UITableViewController {
             }
         }
         
+        raveMobileMoney.chargeWebAuth = {[weak self](flwRef, authURL) in
+            LoadingHUD.shared().hide()
+            self?.showWebView(url: authURL,ref:flwRef)
+        }
+        
         raveMobileMoney.chargePending = {[weak self] (title,message) in
             LoadingHUD.shared().hide()
             DispatchQueue.main.async {
